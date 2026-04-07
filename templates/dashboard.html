@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MeetMind — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/main.css" />
+  <link rel="stylesheet" href="/static/css/dashboard.css" />
+</head>
+<body class="dashboard-body">
+
+  <!-- ── NAV ──────────────────────────────────────────────────────────────── -->
+  <nav class="nav">
+    <div class="nav-logo">Meet<span>Mind</span></div>
+    <div class="nav-links">
+      <a href="/">Upload</a>
+      <a href="/dashboard" class="active">Dashboard</a>
+    </div>
+  </nav>
+
+  <div class="dash-layout">
+
+    <!-- ── SIDEBAR: Meeting list ─────────────────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Meetings</h2>
+        <a href="/" class="btn-sm">+ New</a>
+      </div>
+      <div class="meeting-list" id="meetingList">
+        <p class="list-empty">Loading meetings…</p>
+      </div>
+    </aside>
+
+    <!-- ── MAIN CONTENT ──────────────────────────────────────────────────── -->
+    <main class="dash-main">
+
+      <!-- Empty state -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">📋</div>
+        <h3>Select a meeting</h3>
+        <p>Pick a meeting from the sidebar, or <a href="/">upload a new one</a>.</p>
+      </div>
+
+      <!-- Results panel (hidden until a meeting is selected) -->
+      <div class="results-panel hidden" id="resultsPanel">
+
+        <!-- Meeting header -->
+        <div class="results-header">
+          <div>
+            <h2 class="results-title" id="resultsTitle">Meeting Name</h2>
+            <p class="results-meta" id="resultsMeta">—</p>
+          </div>
+          <div class="header-badges">
+            <span class="badge badge-tasks" id="badgeTasks">0 tasks</span>
+            <span class="badge badge-decisions" id="badgeDecisions">0 decisions</span>
+          </div>
+        </div>
+
+        <!-- Tab bar -->
+        <div class="tab-bar">
+          <button class="tab active" data-tab="summary">Summary</button>
+          <button class="tab" data-tab="tasks">Tasks</button>
+          <button class="tab" data-tab="decisions">Decisions</button>
+          <button class="tab" data-tab="transcript">Transcript</button>
+          <button class="tab" data-tab="entities">Entities</button>
+        </div>
+
+        <!-- ── TAB: Summary ─────────────────────────────────────────────── -->
+        <div class="tab-panel active" id="tab-summary">
+          <div class="summary-box">
+            <p id="summaryText">—</p>
+          </div>
+          <div class="summary-stats" id="summaryStats"></div>
+        </div>
+
+        <!-- ── TAB: Tasks ───────────────────────────────────────────────── -->
+        <div class="tab-panel hidden" id="tab-tasks">
+          <div class="tasks-toolbar">
+            <select id="priorityFilter" class="filter-select">
+              <option value="">All priorities</option>
+              <option value="High">🔴 High</option>
+              <option value="Medium">🟡 Medium</option>
+              <option value="Low">🟢 Low</option>
+            </select>
+            <button class="btn-sm" id="exportTasksBtn">Export CSV</button>
+          </div>
+          <div class="task-list" id="taskList">
+            <p class="list-empty">No tasks extracted.</p>
+          </div>
+        </div>
+
+        <!-- ── TAB: Decisions ───────────────────────────────────────────── -->
+        <div class="tab-panel hidden" id="tab-decisions">
+          <div class="decision-list" id="decisionList">
+            <p class="list-empty">No decisions detected.</p>
+          </div>
+        </div>
+
+        <!-- ── TAB: Transcript ──────────────────────────────────────────── -->
+        <div class="tab-panel hidden" id="tab-transcript">
+          <div class="transcript-toolbar">
+            <input type="text" id="transcriptSearch" class="search-input" placeholder="Search transcript…" />
+          </div>
+          <div class="transcript-box" id="transcriptBox">
+            <p class="list-empty">No transcript available.</p>
+          </div>
+          <!-- Speaker segments -->
+          <div id="speakerSection" class="hidden">
+            <h4 class="section-label">Speaker Segments</h4>
+            <div class="speaker-list" id="speakerList"></div>
+          </div>
+        </div>
+
+        <!-- ── TAB: Entities ────────────────────────────────────────────── -->
+        <div class="tab-panel hidden" id="tab-entities">
+          <div class="entities-grid" id="entitiesGrid"></div>
+        </div>
+
+      </div><!-- /results-panel -->
+    </main>
+  </div>
+
+  <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

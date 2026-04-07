@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MeetMind — AI Meeting Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/main.css" />
+</head>
+<body>
+
+  <!-- ── NAV ──────────────────────────────────────────────────────────────── -->
+  <nav class="nav">
+    <div class="nav-logo">Meet<span>Mind</span></div>
+    <div class="nav-links">
+      <a href="/" class="active">Upload</a>
+      <a href="/dashboard">Dashboard</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-tag">AI-Powered · Real-Time · Actionable</div>
+    <h1 class="hero-title">
+      Turn meetings into<br />
+      <span class="accent">decisions that ship.</span>
+    </h1>
+    <p class="hero-sub">
+      Upload any audio. We transcribe, summarise, extract tasks,
+      identify decisions, and tag deadlines — automatically.
+    </p>
+  </section>
+
+  <!-- ── UPLOAD CARD ───────────────────────────────────────────────────────── -->
+  <main class="upload-section">
+    <div class="upload-card" id="uploadCard">
+
+      <!-- Drop zone -->
+      <div class="drop-zone" id="dropZone">
+        <div class="drop-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="23" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M24 14v14M17 21l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 34h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="drop-title">Drop your meeting audio here</p>
+        <p class="drop-sub">MP3, WAV, M4A, OGG, FLAC, MP4 · up to 200 MB</p>
+        <label class="btn-primary" for="fileInput">Browse file</label>
+        <input type="file" id="fileInput" accept=".mp3,.mp4,.wav,.ogg,.m4a,.webm,.flac" hidden />
+      </div>
+
+      <!-- File preview (shown after selection) -->
+      <div class="file-preview hidden" id="filePreview">
+        <div class="file-info">
+          <div class="file-icon">🎙️</div>
+          <div class="file-meta">
+            <span class="file-name" id="fileName">—</span>
+            <span class="file-size" id="fileSize">—</span>
+          </div>
+          <button class="btn-ghost" id="clearFile">✕</button>
+        </div>
+        <button class="btn-primary full-width" id="uploadBtn">
+          Analyse Meeting →
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Progress ────────────────────────────────────────────────────────── -->
+    <div class="progress-card hidden" id="progressCard">
+      <div class="progress-steps">
+        <div class="step" id="step-upload">
+          <div class="step-dot"></div>
+          <span>Uploading audio</span>
+        </div>
+        <div class="step" id="step-transcribe">
+          <div class="step-dot"></div>
+          <span>Transcribing with Whisper</span>
+        </div>
+        <div class="step" id="step-nlp">
+          <div class="step-dot"></div>
+          <span>Running NLP pipeline</span>
+        </div>
+        <div class="step" id="step-save">
+          <div class="step-dot"></div>
+          <span>Saving to database</span>
+        </div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <p class="progress-label" id="progressLabel">Preparing…</p>
+    </div>
+
+    <!-- ── Error ─────────────────────────────────────────────────────────────── -->
+    <div class="error-card hidden" id="errorCard">
+      <span class="error-icon">⚠️</span>
+      <p id="errorMsg">Something went wrong.</p>
+      <button class="btn-ghost" id="retryBtn">Try again</button>
+    </div>
+  </main>
+
+  <!-- ── HOW IT WORKS ──────────────────────────────────────────────────────── -->
+  <section class="how-it-works">
+    <h2>How it works</h2>
+    <div class="steps-grid">
+      <div class="how-step">
+        <div class="how-num">01</div>
+        <h3>Upload</h3>
+        <p>Drop any audio format — recorded call, Zoom export, voice memo.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">02</div>
+        <h3>Transcribe</h3>
+        <p>OpenAI Whisper converts speech to text with speaker tagging.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03</div>
+        <h3>Analyse</h3>
+        <p>BART + BERT extract summaries, tasks, decisions and deadlines.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">04</div>
+        <h3>Act</h3>
+        <p>View structured output on the dashboard. Never miss a follow-up.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <span>MeetMind © 2024</span>
+    <span>Powered by Whisper · HuggingFace · MongoDB</span>
+  </footer>
+
+  <script src="/static/js/upload.js"></script>
+</body>
+</html>

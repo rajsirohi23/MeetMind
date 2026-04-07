@@ -1,0 +1,24 @@
+# Environment
+.env
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Uploads (don't commit audio files)
+uploads/
+
+# Model cache (HuggingFace downloads)
+~/.cache/huggingface/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
