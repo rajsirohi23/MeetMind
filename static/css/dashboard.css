@@ -10,7 +10,7 @@
 
 .dash-layout {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 288px 1fr;
   height: calc(100vh - 57px);  /* fill below nav */
   overflow: hidden;
   position: relative;
@@ -19,7 +19,7 @@
 
 /* ── Sidebar ─────────────────────────────────────────────────── */
 .sidebar {
-  background: var(--bg-2);
+  background: var(--bg-3);
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
